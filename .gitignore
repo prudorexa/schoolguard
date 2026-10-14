@@ -16,3 +16,5 @@ frontend/.env
 .DS_Store
 .vscode/
 .idea/
+.env
+db.sqlite3

@@ -57,3 +57,8 @@ class StudentParentSerializer(serializers.ModelSerializer):
         if parent and parent.school_id != request.user.school_id:
             raise serializers.ValidationError("Parent does not belong to your school.")
         return attrs
+
+
+class CreateParentLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(min_length=8, write_only=True)

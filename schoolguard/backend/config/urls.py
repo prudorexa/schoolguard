@@ -24,4 +24,12 @@ urlpatterns = [
     path("api/v1/", include("accounts.urls")),
     path("api/v1/", include("schools.urls")),
     path("api/v1/", include("students.urls")),
+    path("api/v1/", include("fees.urls")),
+    path("api/v1/", include("suppliers.urls")),
+    path("api/v1/", include("expenses.urls")),
+    path("api/v1/", include("procurement.urls")),
+    path("api/v1/", include("audit.urls")),
+    path("api/v1/", include("budgets.urls")),
+    path("api/v1/", include("dashboard.urls")),
+    path("api/v1/", include("ai.urls")),
 ]

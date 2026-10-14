@@ -37,10 +37,19 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "django_filters",
     # SchoolGuard apps
     "schools",
     "accounts",
     "students",
+    "fees",
+    "suppliers",
+    "expenses",
+    "procurement",
+    "audit",
+    "budgets",
+    "dashboard",
+    "ai",
 ]
 
 MIDDLEWARE = [
@@ -74,11 +83,11 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # --- Database -----------------------------------------------------------
-# Postgres by default (matches docker-compose service "db"); falls back to
-# sqlite only if DB_ENGINE=sqlite is set explicitly (handy for quick checks
-# without Docker running).
+# sqlite by default for easy local dev with zero setup (no Docker/Postgres
+# required to just run the server). Set DB_ENGINE=postgres in .env to use
+# the docker-compose Postgres service instead, matching production.
 
-if config("DB_ENGINE", default="postgres") == "sqlite":
+if config("DB_ENGINE", default="sqlite") == "sqlite":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -139,6 +148,13 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS", default="http://localhost:5173", cast=Csv()
 )
+
+# --- AI layer -----------------------------------------------------------
+# Server-side only, never exposed to the frontend. The AI service layer
+# (apps/ai) never touches the database directly -- see apps/ai/tools.py
+# for the whitelist of backend functions it's allowed to call.
+ANTHROPIC_API_KEY = config("ANTHROPIC_API_KEY", default="")
+ANTHROPIC_MODEL = config("ANTHROPIC_MODEL", default="claude-sonnet-5")
 
 # --- i18n / tz ----------------------------------------------------------
 

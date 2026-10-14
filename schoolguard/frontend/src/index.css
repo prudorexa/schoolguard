@@ -1,9 +1,42 @@
 @import "tailwindcss";
 
+/*
+  Design tokens -- see the design plan in project notes. Ledger/fintech
+  aesthetic: dark ink sidebar + warm-paper content, Fraunces for KPI
+  figures and page titles, IBM Plex Sans for everything else. Flat tints
+  and hairlines instead of shadows and rounded-card-with-shadow defaults.
+*/
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #14171f;
+  --color-ink-soft: #262b38;
+  --color-paper: #f6f5f1;
+  --color-surface: #ffffff;
+  --color-line: #e4e1d8;
+
+  --color-ledger: #1f6f5c;
+  --color-ledger-soft: #e7f1ec;
+  --color-amber: #b8790b;
+  --color-amber-soft: #fbf1de;
+  --color-red: #b3261e;
+  --color-red-soft: #fbeaea;
+
+  --color-text-primary: #1b1e27;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #f2f1ec;
+}
+
 :root {
   color-scheme: light;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-paper text-text-primary antialiased;
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
